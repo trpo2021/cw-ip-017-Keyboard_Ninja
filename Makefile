@@ -1,6 +1,6 @@
 CXX = g++
 CPPFLAGS = -Wall -Werror -MP -MMD
-SFML_LIBS = -lsfml-window -lsfml-system -lopengl32 -lwinmm -lgdi32 -lsfml-graphics -lfreetype  
+SFML_LIBS = -lsfml-window -lsfml-system -lsfml-graphics -lfreetype  
 SFML_PATH = thirdparty/SFML/lib
 SFML_INC = thirdparty/SFML/include
 SFML_TYPE = SFML_STATIC
