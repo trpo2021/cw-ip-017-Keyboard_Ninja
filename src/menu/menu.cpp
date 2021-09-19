@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <game.h>
 #include <iostream>
 #include <locale>
 #include <menu.h>
@@ -15,20 +16,16 @@ void initMenu(sf::RenderWindow& window)
     textButton.setFont(font);
     textButton.setCharacterSize(48);
     textButton.setFillColor(Color::White);
-
     RectangleShape menuButton1(Vector2f(500, 100));
     RectangleShape menuButton2(Vector2f(500, 100));
-
     menuButton1.setFillColor(Color(0, 0, 0));
     menuButton1.setOutlineColor(Color(250, 150, 100));
     menuButton1.setOutlineThickness(5);
     menuButton1.setPosition(Vector2f(710, 400));
-
     menuButton2.setFillColor(Color(0, 0, 0));
     menuButton2.setOutlineColor(Color(250, 150, 100));
     menuButton2.setOutlineThickness(5);
     menuButton2.setPosition(Vector2f(710, 550));
-
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -55,7 +52,8 @@ void initMenu(sf::RenderWindow& window)
                 if (event.mouseButton.button == Mouse::Left) {
                     if (boundsButton1.contains(
                                 event.mouseButton.x, event.mouseButton.y)) {
-                        cout << "Start game";
+                        window.clear();
+                        startGame(window);
                     }
                     if (boundsButton2.contains(
                                 event.mouseButton.x, event.mouseButton.y)) {
@@ -64,17 +62,13 @@ void initMenu(sf::RenderWindow& window)
                 }
             }
         }
-
         //рисуем заголовок
-        @ @-38, 11 + 74,
-                9 @ @ void initMenu(sf::RenderWindow & window)
-                        window.draw(textButton);
-
+        textButton.setString("KeyBoard Ninja");
+        textButton.setPosition(Vector2f(790, 200));
+        window.draw(textButton);
         //отрисовываем кнопки
-
         window.draw(menuButton1);
         window.draw(menuButton2);
-
         //отрисовываем текст на кнопках
         textButton.setPosition(Vector2f(880, 420));
         textButton.setString(L"Начать");
