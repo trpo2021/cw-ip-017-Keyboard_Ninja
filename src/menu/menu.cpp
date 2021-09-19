@@ -1,31 +1,38 @@
 #include <SFML/Graphics.hpp>
-#include <game.h>
 #include <iostream>
+#include <levels.h>
 #include <locale>
 #include <menu.h>
+
 using namespace std;
 using namespace sf;
+
 void initMenu(sf::RenderWindow& window)
 {
-    //инициализируем кнопку и текст
+    //РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РєРЅРѕРїРєСѓ Рё С‚РµРєСЃС‚
     Font font;
     if (!font.loadFromFile("source/OpenSans-Regular.ttf")) {
         cout << "Error, source/OpenSans-Regular.ttf not found" << endl;
     }
+
     Text textButton;
     textButton.setFont(font);
     textButton.setCharacterSize(48);
     textButton.setFillColor(Color::White);
+
     RectangleShape menuButton1(Vector2f(500, 100));
     RectangleShape menuButton2(Vector2f(500, 100));
+
     menuButton1.setFillColor(Color(0, 0, 0));
     menuButton1.setOutlineColor(Color(250, 150, 100));
     menuButton1.setOutlineThickness(5);
     menuButton1.setPosition(Vector2f(710, 400));
+
     menuButton2.setFillColor(Color(0, 0, 0));
     menuButton2.setOutlineColor(Color(250, 150, 100));
     menuButton2.setOutlineThickness(5);
     menuButton2.setPosition(Vector2f(710, 550));
+
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -53,7 +60,7 @@ void initMenu(sf::RenderWindow& window)
                     if (boundsButton1.contains(
                                 event.mouseButton.x, event.mouseButton.y)) {
                         window.clear();
-                        startGame(window);
+                        openLevels(window);
                     }
                     if (boundsButton2.contains(
                                 event.mouseButton.x, event.mouseButton.y)) {
@@ -62,20 +69,26 @@ void initMenu(sf::RenderWindow& window)
                 }
             }
         }
-        //рисуем заголовок
+
+        //СЂРёСЃСѓРµРј Р·Р°РіРѕР»РѕРІРѕРє
         textButton.setString("KeyBoard Ninja");
         textButton.setPosition(Vector2f(790, 200));
         window.draw(textButton);
-        //отрисовываем кнопки
+
+        //РѕС‚СЂРёСЃРѕРІС‹РІР°РµРј РєРЅРѕРїРєРё
+
         window.draw(menuButton1);
         window.draw(menuButton2);
-        //отрисовываем текст на кнопках
+
+        //РѕС‚СЂРёСЃРѕРІС‹РІР°РµРј С‚РµРєСЃС‚ РЅР° РєРЅРѕРїРєР°С…
         textButton.setPosition(Vector2f(880, 420));
-        textButton.setString(L"Начать");
+        textButton.setString(L"РќР°С‡Р°С‚СЊ");
         window.draw(textButton);
+
         textButton.setPosition(Vector2f(885, 565));
-        textButton.setString(L"Выход");
+        textButton.setString(L"Р’С‹С…РѕРґ");
         window.draw(textButton);
+
         window.display();
         sleep(milliseconds(1000 / 60));
         window.clear();
