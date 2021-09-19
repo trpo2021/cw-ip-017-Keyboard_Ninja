@@ -32,3 +32,6 @@
 *.app
 
 .vs/
+
+# SFML
+thirdparty/SFML
